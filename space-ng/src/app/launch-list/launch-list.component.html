@@ -1,32 +1,31 @@
 
 <div class="container">
     <div *ngIf="pastLaunches$ | async as pastLaunches"> 
-        <div class="panel-columns">
+        <div class="panel-rows">
             <div class="col-sm-12">
                 <div 
                     class="panel panel-default" 
-                    style="width: 90%;" 
+                    style="width: 100%;" 
                     *ngFor="let launch of pastLaunches" [routerLink]="['/', launch.id]">
-                    <div class="panel-heading">{{ launch.mission_name }}</div>
-                    <img 
+                    <h4 class="panel-heading">{{ launch.mission_name }}</h4>
+                    <div class="panel-body">
+                        <img
+                            *ngIf="launch.links.mission_patch_small"
+                            class="patch"
+                            loading="lazy"
+                            [src]="launch.links.mission_patch_small"
+                            alt="Mission patch of {{ launch.mission_name }}"
+                        />
+                        <p class="card-text">Rocket: {{ launch.rocket.rocket_name }}</p>
+                        <img 
+                        *ngIf="launch.links.flickr_images[0]"
                         class="panel-img-top"
                         width="100%"
                         mat-card-image
                         loading="lazy"
                         [src]="launch.links.flickr_images[0]"
                         alt="Photo of {{ launch.mission_name }}"
-                    >
-                    <div class="panel-body">
-                        <img
-                            height="50"
-                            width="50"
-                            mat-card-avatar
-                            loading="lazy"
-                            [src]="launch.links.mission_patch_small"
-                            alt="Mission patch of {{ launch.mission_name }}"
-                        />
-                        
-                        <p class="card-text">{{ launch.rocket.rocket_name }}.</p>
+                        >
                     </div>
                 </div>
             </div>

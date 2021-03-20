@@ -1,0 +1,21 @@
+.patch {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    opacity: 0.9;
+  }
+.card-text {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    text-align: center;
+    opacity: 0.9;
+  }
+  .panel {
+    background:#f7f7f7;
+  }
+  .panel-heading {
+    background-color: #f7f7f7;
+  }

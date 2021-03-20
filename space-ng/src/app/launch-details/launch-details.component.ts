@@ -1,4 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { map, switchMap } from 'rxjs/operators';
+import { LaunchDetailsGQL } from '../services/spacexGraphql.service';
 
 @Component({
   selector: 'app-launch-details',
@@ -8,9 +12,25 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class LaunchDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly launchDetailsService: LaunchDetailsGQL,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
   }
+
+  launchDetails$ = this.route.paramMap.pipe(
+    switchMap(params => {
+      const id = params.get('id');
+      return this.launchDetailsService.fetch({ id });
+    }),
+    map(res => res.data.launch)
+  );
+
+  btnClick= function () {
+          this.router.navigateByUrl('');
+  };
 
 }

@@ -12,7 +12,7 @@ export class LaunchListComponent implements OnInit {
 pastLaunches$;
   constructor(private pastLaunchesService: PastLaunchesListGQL) {
     this.pastLaunches$ = this.pastLaunchesService
-    .fetch({ limit: 30 })
+    .fetch({limit: 1000})
     .pipe(
       map(
         res => res.data.launchesPast
